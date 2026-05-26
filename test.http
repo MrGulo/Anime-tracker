@@ -1,0 +1,23 @@
+POST http://localhost:8080/add
+Content-Type: application/json
+
+{
+  "title": "1",
+  "status": "Пересматриваю",
+  "rating": 10.0
+}
+###
+DELETE http://localhost:8080/delete?id=1
+
+###
+
+DELETE http://localhost:8080/delete?id=2
+
+###
+
+DELETE http://localhost:8080/delete?id=3
+###
+
+GET http://localhost:8080/anime
+
+###
