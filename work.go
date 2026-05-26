@@ -69,7 +69,7 @@ func fetchAndSaveAnime() {
 }
 
 func startWorker() {
-	ticker := time.NewTicker(1 * time.Minute)
+	ticker := time.NewTicker(24 * time.Hour)
 
 	fetchAndSaveAnime()
 
