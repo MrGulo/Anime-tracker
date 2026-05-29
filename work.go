@@ -19,17 +19,18 @@ type Shikimori struct {
 }
 
 func fetchAndSaveAnime() {
-	url := "https://shikimori.one/api/animes?limit=3&order=popularity"
+	page := 1
+	getURL := fmt.Sprintf("https://shikimori.one/api/animes?limit=50&page=%d", page)
 
-	resp, err := http.Get(url)
+	resp, err := http.Get(getURL)
 	if err != nil {
 		fmt.Println("Ошибка подключения к shikimori", err)
 		return
 	}
-	defer resp.Body.Close()
 
 	var animes []Shikimori
 	err = json.NewDecoder(resp.Body).Decode(&animes)
+	resp.Body.Close()
 	if err != nil {
 		fmt.Println("Ошибка чтения JSON в воркере", err)
 		return
@@ -56,6 +57,7 @@ func fetchAndSaveAnime() {
 	if len(addedTitles) > 0 {
 		fmt.Printf("Лог воркера [%s]: Синхронизация успешна!\n", time.Now().Format("15:04:02"))
 		fmt.Printf("Добавлено новых тайтлов: %d\n", len(addedTitles))
+		fmt.Println("Номер страницы:", page)
 		fmt.Println("Список новинок:")
 
 		for i, title := range addedTitles {
@@ -66,6 +68,12 @@ func fetchAndSaveAnime() {
 	} else {
 		fmt.Printf("Лог воркера [%s]: Новых аниме на Шикимори не появилось.\n", time.Now().Format("15:04:02"))
 	}
+	page = page + 1
+	time.Sleep(1 * time.Second)
+	//if len(animes) == 0 {
+	//	break
+	//}
+
 }
 
 func startWorker() {

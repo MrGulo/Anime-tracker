@@ -11,6 +11,7 @@ func main() {
 	createTable()
 
 	go startWorker()
+	go startBot(db)
 
 	http.HandleFunc("/anime", GetAnimeHandler)
 	http.HandleFunc("/add", addAnimeHandler)
