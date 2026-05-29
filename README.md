@@ -34,5 +34,5 @@ The project consists of three independent components running concurrently within
 
 ### 1. Clone the repository
 ```bash
-git clone [https://github.com/MrGulo/Anime-tracker.git](https://github.com/MrGulo/Anime-tracker.git)
+git clone https://github.com/MrGulo/Anime-tracker.git
 cd Anime-tracker
